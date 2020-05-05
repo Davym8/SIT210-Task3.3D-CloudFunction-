@@ -1,0 +1,48 @@
+int led = A5;
+int led2 = D7;
+
+int wave = 3;
+int pat = 5;
+
+void signalcaught(int type)
+{
+    //function loops the led
+    for(int i = 0; i < 3; i++) 
+    {
+        digitalWrite(led, HIGH);
+        digitalWrite(led2, HIGH);
+        delay(500);
+        digitalWrite(led, LOW);
+        digitalWrite(led2, LOW);
+        delay(500);
+    }
+}
+
+
+    
+void setup() 
+{
+    pinMode(led, OUTPUT); // Pin A5
+    pinMode(led2, OUTPUT); // Pin D7
+    Particle.subscribe("Deakin_RIOT_SIT210_Photon_Buddy", myHandler); 
+}
+void loop() 
+{
+ //whole lotta empty   
+}
+
+void myHandler(const char *event, const char *data) 
+    {
+        //  Checks to see if the data received is a "wave"
+        if (strcmp (data, "wave") == 0)
+        {
+            //  Runs the function signal caught
+            signalcaught(wave);
+        }
+        //  Checks to see if the data received is a "pat"
+        else if (strcmp (data, "pat") == 0)
+        {
+            //  Runs the function
+            signalcaught(pat);
+        }
+    }
