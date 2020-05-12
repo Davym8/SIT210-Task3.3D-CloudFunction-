@@ -7,7 +7,7 @@ int pat = 5;
 void signalcaught(int type)
 {
     //function loops the led
-    for(int i = 0; i < 3; i++) 
+    for(int i = 0; i < type; i++) 
     {
         digitalWrite(led, HIGH);
         digitalWrite(led2, HIGH);
